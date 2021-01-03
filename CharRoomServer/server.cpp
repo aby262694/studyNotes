@@ -146,6 +146,15 @@ void server::disConnectSlot()
 {
     QString closeStr = QDateTime::currentDateTime().toString("dddd.yyyy.MM.dd HH:mm:ss") + ' ' + "clint close";
     strlist.append(closeStr);
+
+    //删除这个socket
+    for(int i = 0; i < clientList_socket.count(); i++)
+    {
+        if( !clientList_socket.at(i)->isValid() )
+        {
+            clientList_socket.removeAt(i);
+        }
+    }
 }
 
 //给客户端发送消息
